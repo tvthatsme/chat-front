@@ -1,0 +1,71 @@
+.register {
+  height: 100vh;
+  width: 100vw;
+  background-color: #242731;
+  color: white;
+}
+
+.register__info,
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.register__form p {
+  margin-bottom: 40px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.register__inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.register__form p,
+.register__inputs input[type='text'],
+.register__inputs input[type='submit'] {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.register__inputs input[type='text'],
+.register__inputs input[type='submit'] {
+  height: 60px;
+  border: none;
+  padding: 0 20px;
+  margin: 0;
+}
+
+.register__inputs input[type='text'] {
+  width: 60vw;
+  max-width: 400px;
+  margin-right: 20px;
+}
+
+.register__inputs input[type='submit'] {
+  background-color: #ff5544;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .register__inputs {
+    width: calc(100% - 20px);
+    flex-direction: column;
+    padding: 0 10px;
+  }
+
+  .register__inputs input[type='submit'] {
+    width: 100%;
+  }
+
+  .register__inputs input[type='text'] {
+    width: calc(100% - 40px);
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
