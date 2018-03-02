@@ -1,0 +1,28 @@
+.conversation__title {
+  height: 70px;
+  padding: 0 20px;
+  line-height: 70px;
+}
+
+.conversation__thread {
+  height: calc(100vh - 160px);
+  overflow-y: scroll;
+  padding: 0 20px;
+}
+
+.conversation__input {
+  display: flex;
+  height: 90px;
+  background-color: #f6f7f8;
+}
+
+.conversation input[type='text'] {
+  width: 100%;
+  margin: 20px;
+  border: 2px solid rgba(36, 39, 49, 0.4);
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 0 10px;
+  color: #242731;
+}

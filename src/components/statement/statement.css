@@ -1,0 +1,16 @@
+.statement {
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.statement:hover {
+  background-color: #f6f7f8;
+}
+
+.statement strong {
+  font-family: 'Raleway-Bold', sans-serif;
+}
+
+.statement p {
+  padding-top: 3px;
+}
