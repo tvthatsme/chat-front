@@ -14,7 +14,7 @@ class Chat extends Component {
           <Channels />
         </div>
         <div className="chat__conversation">
-          <Conversation />
+          <Conversation channel={1} />
         </div>
       </div>
     );
