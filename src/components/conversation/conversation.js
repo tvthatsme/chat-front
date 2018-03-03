@@ -2,68 +2,67 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Statement from '../statement/statement';
+import InputStatement from '../input-statement/input-statement';
 import './conversation.css';
 
 class Conversation extends Component {
-  handleInput(event) {
-    if (event.keyCode === 13) {
-      console.log(event.target.value);
-    }
-  }
-
-  sendStatement = async () => {};
-
   /**
    * Render the component
    */
   render() {
+    // Store the data returned from the query
+    const data = this.props.conversationQuery;
+
     // Loading state
-    if (this.props.conversationQuery && this.props.conversationQuery.loading) {
+    if (data && data.loading) {
       return <div>Loading</div>;
     }
 
     // Error state
-    if (this.props.conversationQuery && this.props.conversationQuery.error) {
+    if (data && data.error) {
       return <div>Error</div>;
     }
 
     // Store the statements
-    const statements = this.props.conversationQuery.statements;
+    const statements = data.statements;
+
+    const users = data.users;
+
+    // Store the channel details
+    const channel = data.channel;
+
+    // TODO: Creating a better GraphQL query would eliminate this mess
+    const fullStatements = statements.map(statement => {
+      let state = Object.assign({}, statement);
+      const user = users.filter(user => user.id === state.userId);
+      if (user.length) {
+        state.name = user[0].nickname;
+      }
+      return state;
+    });
 
     return (
       <div className="conversation">
         <h2 className="conversation__title">
-          {this.props.conversationQuery.channel.title}
+          {channel !== null ? channel.title : 'Select or create a channel...'}
         </h2>
         <div className="conversation__thread">
-          {statements.map(statement => (
+          {fullStatements.map(statement => (
             <Statement
               key={statement.id}
-              // name={statement.User.name}
+              name={statement.name}
               text={statement.text}
             />
           ))}
         </div>
-        <div className="conversation__input">
-          <input type="text" onKeyUp={e => this.handleInput(e)} />
-        </div>
+        <InputStatement
+          channel={this.props.channel}
+          userId={this.props.userId}
+        />
       </div>
     );
   }
 }
-
-// const STATEMENT_MUTATION = gql`
-//   mutation StatementMutation($user: Int!, $text: String!) {
-//     createStatement(id: 8, user_id: $user, channel_id: 1, text: $text) {
-//       id
-//     }
-//   }
-// `;
-
-// mutation {
-//   createStatement(id: 8, user_id: 123, channel_id: 1, text: "Hello") {
-//     id
-//   }
 
 // Define the GraphQL query to get the conversation data
 const CONVERSATION_QUERY = gql`
@@ -74,6 +73,12 @@ const CONVERSATION_QUERY = gql`
     statements(where: { channelId: $channel }) {
       text
       id
+      createdAt
+      userId
+    }
+    users {
+      id
+      nickname
     }
   }
 `;

@@ -7,18 +7,21 @@ class ChannelList extends Component {
    * Render the list of channels or any error/loading state
    */
   render() {
+    // Store the data returned from the query
+    const data = this.props.channelsQuery;
+
     // Loading state
-    if (this.props.channelsQuery && this.props.channelsQuery.loading) {
+    if (data && data.loading) {
       return <div className="channels__no-list">Loading...</div>;
     }
 
     // Error state
-    if (this.props.channelsQuery && this.props.channelsQuery.error) {
+    if (data && data.error) {
       return <div className="channels__no-list">Error</div>;
     }
 
     // Store the channels
-    const channels = this.props.channelsQuery.channels;
+    const channels = data.channels;
 
     // Render all the channels
     return (

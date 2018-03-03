@@ -83,3 +83,73 @@
 .channels__item--selected:hover {
   color: white;
 }
+
+.channels__add-screen {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #242731;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.channels__close-add {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: #f6f7f8;
+  color: #242731;
+  font-size: 20px;
+  line-height: 70px;
+}
+
+.channels__close-add:hover {
+  cursor: pointer;
+}
+
+.channels__close-add:focus {
+  outline: none;
+}
+
+.channels__add-screen--not-visible {
+  display: none;
+}
+
+.channels__add-screen--visible {
+  display: flex;
+}
+
+.channels__add-screen h1 {
+  margin-bottom: 40px;
+}
+
+.channels__add-screen input[type='text'],
+.channels__add-screen input[type='submit'] {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  height: 60px;
+  border: none;
+  border-radius: 3px;
+  padding: 0 20px;
+  margin: 0;
+}
+.channels__add-screen input[type='text'] {
+  width: 40vw;
+  margin-right: 20px;
+}
+
+.channels__add-screen input[type='submit'] {
+  background-color: #ff5544;
+  color: white;
+}
+
+.channels__add-screen input[type='submit']:hover {
+  cursor: pointer;
+}

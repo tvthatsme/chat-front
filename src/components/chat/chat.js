@@ -4,23 +4,21 @@ import Conversation from '../conversation/conversation';
 import './chat.css';
 
 class Chat extends Component {
+  /**
+   * Constructor for the chat component
+   */
   constructor() {
     super();
 
     this.state = {
-      selectedChannel: 'cjeb0urp6003i01416ycy2ypr'
+      selectedChannel: ''
     };
-  }
-
-  changeChannel(channelId) {
-    console.log(`change the channel to ${channelId}`);
   }
 
   /**
    * Render the component
    */
   render() {
-    console.log(this.state.selectedChannel);
     return (
       <div className="chat">
         <div className="chat__channels">
@@ -32,7 +30,10 @@ class Chat extends Component {
           />
         </div>
         <div className="chat__conversation">
-          <Conversation channel={this.state.selectedChannel} />
+          <Conversation
+            channel={this.state.selectedChannel}
+            userId={this.props.userId}
+          />
         </div>
       </div>
     );
