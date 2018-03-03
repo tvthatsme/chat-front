@@ -5,6 +5,14 @@ import Statement from '../statement/statement';
 import './conversation.css';
 
 class Conversation extends Component {
+  handleInput(event) {
+    if (event.keyCode === 13) {
+      console.log(event.target.value);
+    }
+  }
+
+  sendStatement = async () => {};
+
   /**
    * Render the component
    */
@@ -20,44 +28,52 @@ class Conversation extends Component {
     }
 
     // Store the statements
-    const statements = this.props.conversationQuery.Channel.Statements;
+    const statements = this.props.conversationQuery.statements;
 
     return (
       <div className="conversation">
         <h2 className="conversation__title">
-          {this.props.conversationQuery.Channel.title}
+          {this.props.conversationQuery.channel.title}
         </h2>
         <div className="conversation__thread">
           {statements.map(statement => (
             <Statement
               key={statement.id}
-              name={statement.User.name}
+              // name={statement.User.name}
               text={statement.text}
             />
           ))}
         </div>
         <div className="conversation__input">
-          <input type="text" />
+          <input type="text" onKeyUp={e => this.handleInput(e)} />
         </div>
       </div>
     );
   }
 }
 
-// const channelId = 1;
+// const STATEMENT_MUTATION = gql`
+//   mutation StatementMutation($user: Int!, $text: String!) {
+//     createStatement(id: 8, user_id: $user, channel_id: 1, text: $text) {
+//       id
+//     }
+//   }
+// `;
+
+// mutation {
+//   createStatement(id: 8, user_id: 123, channel_id: 1, text: "Hello") {
+//     id
+//   }
 
 // Define the GraphQL query to get the conversation data
 const CONVERSATION_QUERY = gql`
-  query ConversationQuery {
-    Channel(id: 1) {
+  query ConversationQuery($channel: ID!) {
+    channel(where: { id: $channel }) {
       title
-      Statements {
-        id
-        text
-        User {
-          name
-        }
-      }
+    }
+    statements(where: { channelId: $channel }) {
+      text
+      id
     }
   }
 `;

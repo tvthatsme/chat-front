@@ -1,4 +1,5 @@
 .channels {
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: #242731;
@@ -11,12 +12,38 @@
   line-height: 70px;
 }
 
+.channels__add {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 32px;
+  background-color: #ff5544;
+  color: white;
+  border: none;
+}
+
+.channels__add:hover {
+  cursor: pointer;
+}
+
+.channels__add:focus {
+  outline: none;
+}
+
 .channels__list {
   height: calc(100vh - 70px);
   padding: 0 20px 0 0;
   margin-left: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.channels__no-list {
+  padding: 0 20px;
 }
 
 .channels__item {
@@ -32,6 +59,7 @@
   text-overflow: ellipsis;
   display: block;
   margin-bottom: 10px;
+  transition: all 0.2s linear;
 }
 
 .channels__item:last-child {
@@ -43,4 +71,15 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: bold;
+}
+
+.channels__item--selected {
+  color: white;
+  background-color: #ff5544;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.channels__item--selected:hover {
+  color: white;
 }

@@ -1,50 +1,23 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import ChannelList from '../channel-list/channel-list';
 import './channels.css';
 
 class Channels extends Component {
   /**
-   * Render the component
+   * Render the channel sidebar component
    */
   render() {
-    // Loading state
-    if (this.props.channelsQuery && this.props.channelsQuery.loading) {
-      return <div>Loading</div>;
-    }
-
-    // Error state
-    if (this.props.channelsQuery && this.props.channelsQuery.error) {
-      return <div>Error</div>;
-    }
-
-    // Store the channels
-    const channels = this.props.channelsQuery.allChannels;
-
-    // Render all the channels
     return (
       <div className="channels">
         <h2>Channels</h2>
-        <ul className="channels__list">
-          {channels.map(channel => (
-            <li className="channels__item" key={channel.id}>
-              {channel.title}
-            </li>
-          ))}
-        </ul>
+        <button className="channels__add">+</button>
+        <ChannelList
+          channel={this.props.channel}
+          changeChannel={channel => this.props.changeChannel(channel)}
+        />
       </div>
     );
   }
 }
 
-// Define the GraphQL query to get all the channels
-const CHANNELS_QUERY = gql`
-  query ChannelsQuery {
-    allChannels {
-      id
-      title
-    }
-  }
-`;
-
-export default graphql(CHANNELS_QUERY, { name: 'channelsQuery' })(Channels);
+export default Channels;
