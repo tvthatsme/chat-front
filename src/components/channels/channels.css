@@ -153,3 +153,33 @@
 .channels__add-screen input[type='submit']:hover {
   cursor: pointer;
 }
+
+@media (max-width: 800px) {
+  .channels__add-screen h1 {
+    font-size: 40px;
+  }
+
+  .channels__add-form {
+    margin: 0 20px;
+  }
+
+  .channels__add-screen input[type='submit'] {
+    width: 100%;
+  }
+
+  .channels__add-screen input[type='text'] {
+    width: calc(100% - 40px);
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .channels__close-add {
+    top: 20px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 29px;
+    font-size: 14px;
+    z-index: 2;
+  }
+}

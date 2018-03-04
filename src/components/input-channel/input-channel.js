@@ -49,7 +49,7 @@ class InputChannel extends Component {
    */
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="channels__add-form" onSubmit={this.handleSubmit}>
         <h1>Add Channel</h1>
         <input
           type="text"
