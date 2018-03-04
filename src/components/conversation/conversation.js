@@ -7,6 +7,19 @@ import './conversation.css';
 
 class Conversation extends Component {
   /**
+   * Render just a header with an error state
+   *
+   * @param {String} title Title for error case
+   */
+  renderErrorHeader(title) {
+    return (
+      <div className="conversation">
+        <h2 className="conversation__title">title</h2>
+      </div>
+    );
+  }
+
+  /**
    * Render the component
    */
   render() {
@@ -15,12 +28,12 @@ class Conversation extends Component {
 
     // Loading state
     if (data && data.loading) {
-      return <div>Loading</div>;
+      return this.renderErrorHeader('Loading...');
     }
 
     // Error state
     if (data && data.error) {
-      return <div>Error</div>;
+      return this.renderErrorHeader('Error loading channel...');
     }
 
     // Store the statements
@@ -41,6 +54,9 @@ class Conversation extends Component {
       return state;
     });
 
+    /**
+     * Render the component
+     */
     return (
       <div className="conversation">
         <h2 className="conversation__title">

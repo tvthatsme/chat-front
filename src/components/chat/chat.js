@@ -11,8 +11,27 @@ class Chat extends Component {
     super();
 
     this.state = {
-      selectedChannel: ''
+      selectedChannel: '',
+      showMobileMenu: false
     };
+  }
+
+  /**
+   * Toggle the state to show the channel menu on mobile
+   */
+  toggleMobileMenu() {
+    this.setState({ showMobileMenu: !this.state.showMobileMenu });
+  }
+
+  /**
+   *
+   * @param {ID} channel Channel ID that is selected for viewing
+   */
+  setChannel(channel) {
+    this.setState({
+      selectedChannel: channel,
+      showMobileMenu: false
+    });
   }
 
   /**
@@ -21,13 +40,22 @@ class Chat extends Component {
   render() {
     return (
       <div className="chat">
-        <div className="chat__channels">
+        <div
+          className={
+            'chat__channels ' +
+            (this.state.showMobileMenu ? 'chat__channels--show' : '')
+          }
+        >
           <Channels
             channel={this.state.selectedChannel}
-            changeChannel={channel =>
-              this.setState({ selectedChannel: channel })
-            }
+            changeChannel={channel => this.setChannel(channel)}
           />
+          <button
+            class="chat__show-channels"
+            onClick={e => this.toggleMobileMenu()}
+          >
+            &#9776;
+          </button>
         </div>
         <div className="chat__conversation">
           <Conversation

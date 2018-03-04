@@ -14,3 +14,58 @@
 .chat__conversation {
   width: 75%;
 }
+
+.chat__show-channels {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .chat__conversation {
+    width: 100%;
+    margin-left: 50px;
+  }
+
+  .chat__channels {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transform: translateX(calc(-100% + 50px));
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .chat__channels--show {
+    transform: translateX(0);
+  }
+
+  .chat__channels .channels__list {
+    width: calc(100% - 70px);
+  }
+
+  .chat__channels .channels__add {
+    right: 50px;
+  }
+
+  .chat__show-channels {
+    display: block;
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    background-color: #ff5544;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    line-height: 22px;
+    font-size: 22px;
+    padding-bottom: 3px;
+  }
+
+  .chat__show-channels:hover {
+    cursor: pointer;
+  }
+
+  .chat__show-channels:focus {
+    outline: none;
+  }
+}
